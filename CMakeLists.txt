@@ -14,6 +14,7 @@ find_package(OpenCV 4 REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(yaml-cpp REQUIRED)
+find_package(ament_index_cpp REQUIRED)
 
 include_directories(
   include
@@ -31,6 +32,7 @@ ament_target_dependencies(interface
   rclcpp
   rclpy
   std_msgs
+  ament_index_cpp
 )
 
 install(DIRECTORY cfg launch

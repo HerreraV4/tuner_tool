@@ -11,9 +11,16 @@
 #include "rcl_interfaces/srv/set_parameters.hpp"
 #include "rclcpp/parameter.hpp"
 
-using namespace std::chrono_literals;
-bool flg_init = true;
+#include "ament_index_cpp/get_package_share_directory.hpp"
 
+using namespace std::chrono_literals;
+
+std::string package_path =
+    ament_index_cpp::get_package_share_directory("bridge_param");
+
+
+
+bool flg_init = true;
 
 const int num_parameters = 13;
 const int num_gains = 12;
@@ -78,7 +85,9 @@ class interface : public rclcpp::Node {
     
     private:
         rclcpp::TimerBase::SharedPtr timer_;
-        std::string file = "/home/mk5/ros2_ws/src/tuner_tool/cfg/gains.yaml";
+        //std::string file = "/home/mk5/ros2_ws/src/tuner_tool/cfg/gains.yaml";
+
+        std::string file = package_path + "/cfg/gains.yaml";
 
         rclcpp::Client<rcl_interfaces::srv::SetParameters>::SharedPtr client_;
 
